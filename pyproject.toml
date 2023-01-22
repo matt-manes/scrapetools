@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scrapetools"
+authors = [{name="Matt Manes"}]
+description = "A collection of tools to aid in web scraping."
+version = "1.0.0"
+requires-python = ">=3.10"
+dependencies = [
+
+	"bs4~=0.0.1",
+	"phonenumbers~=8.12.57"
+]
+readme = "README.md"
+keywords = [
+    "webscraping",
+    "web",
+    "html",
+    "email",
+    "scrape",
+    "scraping"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/matt-manes/scrapetools"
+"Documentation" = "https://github.com/matt-manes/scrapetools/tree/main/docs"
+"Source code" = "https://github.com/matt-manes/scrapetools/tree/main/src/scrapetools"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = "src"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    ".coverage",
+    ".pytest_cache",
+    ".vscode",
+    "tests"
+]
