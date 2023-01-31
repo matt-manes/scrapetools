@@ -64,9 +64,18 @@ class LinkScraper:
         ]
 
     def scrape_page_links(self):
-        """Scrape links from href attribute of <a> and <link> tags."""
-        links = self.find_all("a", "href")
-        links.extend(self.find_all("link", "href"))
+        """Scrape links according to tags and attributes."""
+        links = []
+        for tag, attribute in [
+            ("a", "href"),
+            ("link", "href"),
+            ("source", "src"),
+            ("div", "src"),
+            ("div", "data-src"),
+            ("div", "data-url"),
+            ("div", "href"),
+        ]:
+            links.extend(self.find_all(tag, attribute))
         self.page_links = self.process_links(links)
 
     def scrape_img_links(self):
