@@ -1,11 +1,11 @@
-# scrapetools
+# Scrapetools
 A collection of tools to aid in web scraping.<br>
 Install using:
 <pre>pip install scrapetools</pre>
-scrapetools contains three functions (scrape_emails, scrape_phone_numbers, scrape_inputs)
+Scrapetools contains three functions (scrape_emails, scrape_phone_numbers, scrape_inputs)
 and one class (LinkScraper).
 <br>
-Basic usage:<br>
+## Basic usage
 <pre>
 import scrapetools
 import requests
