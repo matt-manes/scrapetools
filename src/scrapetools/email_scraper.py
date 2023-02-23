@@ -114,7 +114,7 @@ def strip_unicode(emails: list[str]) -> list[str]:
     for email in emails:
         for text in ["u003e", "u00a0"]:
             if text in email:
-                email = email[len(text) + 1 :]
+                email = email[len(text) :]
         stripped_emails.append(email)
     return stripped_emails
 
