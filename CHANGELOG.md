@@ -1,6 +1,17 @@
 # Changelog
 
-## 1.0.1 (2023-01-31)
+## 1.0.2 (2023-02-23)
+
+#### Fixes
+
+* fix stripping one too many ch in strip_unicode
+#### Others
+
+* add changelog
+* update readme
+
+
+## v1.0.1 (2023-01-31)
 
 #### Performance improvements
 
@@ -9,7 +20,5 @@
 
 * update to build v1.0.1
 
-Full set of changes: [`v1.0.0...1.0.1`](https://github.com/matt-manes/scrapetools/compare/v1.0.0...1.0.1)
 
 ## v1.0.0 (2023-01-21)
-
