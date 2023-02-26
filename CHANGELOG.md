@@ -1,12 +1,22 @@
 # Changelog
 
-## 1.0.2 (2023-02-23)
+## 1.1.0 (2023-02-26)
+
+#### Performance improvements
+
+* use regex to scrape phone numbers
+* Use regex for email extraction
+
+
+## v1.0.2 (2023-02-23)
 
 #### Fixes
 
 * fix stripping one too many ch in strip_unicode
 #### Others
 
+* build v1.0.2
+* update changelog
 * add changelog
 * update readme
 
