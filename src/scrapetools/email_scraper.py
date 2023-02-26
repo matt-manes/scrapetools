@@ -1,5 +1,6 @@
 from string import printable
 from urllib.parse import unquote
+import re
 
 
 def validate(email: str) -> bool:
@@ -119,7 +120,7 @@ def strip_unicode(emails: list[str]) -> list[str]:
     return stripped_emails
 
 
-def scrape_emails(text: str) -> list[str]:
+def scrape_emails_noregex(text: str) -> list[str]:
     """Extracts potential emails from given text
     and returns as a list of strings."""
     if "%" in text:
@@ -155,3 +156,81 @@ def scrape_emails(text: str) -> list[str]:
                 last_stopdex = atdex + 1
         emails = sorted(list(set(strip_unicode(emails))))
     return emails
+
+
+def filter_out_files(
+    emails: list[str], additional_extensions: list[str] = None
+) -> list[str]:
+    """Filter out emails with file extensions
+    instead of domains.
+
+    :param additional_extensions: Extra file extensions to filter out."""
+    ext = [
+        "png",
+        "jpg",
+        "js",
+        "html",
+        "svg",
+        "jpeg",
+        "mp4",
+        "mpeg",
+        "css",
+        "pdf",
+        "wav",
+        "docx",
+        "txt",
+        "rtf",
+        "gif",
+        "webp",
+        "x",
+    ]
+    if additional_extensions:
+        ext.extend([extension.strip(".") for extension in additional_extensions])
+    ignore = "$|".join(ext) + "$"
+    pattern = r".*[.](?!" + ignore + r")[^.]*$"
+    # Lazy evaluation means we can skip the regex overhead for common domains
+    return [
+        email
+        for email in emails
+        if email[email.rfind(".") + 1 :]
+        in ["com", "org", "net", "us", "io", "edu", "gov", "biz"]
+        or re.search(pattern, email.lower())
+    ]
+
+
+def replace_unicodehex(text: str) -> str:
+    """Replace unicode hex strings (u003e etc.) with a space."""
+    return re.sub(r"u00[a-zA-Z0-9]{2}", " ", text)
+
+
+def scrape_emails(text: str, extra_extensions: list[str] = None) -> list[str]:
+    """Extract emails from text using regex.
+
+    :param text: The text to scrape.
+
+    :param extra_extensions: Extra file extensions to filter out."""
+    # Remove chunks with no "@" in them to reduce processing
+    text = unquote(" ".join(chunk.lower() for chunk in text.split() if "@" in chunk))
+
+    # Replace any % encoding or unicode hex strings with spaces
+    text = replace_unicodehex(text)
+
+    # Validation:
+    # Starts with an alphanumeric character.
+    # Local part consists of 1-63 alphanumeric + '._-' characters.
+    # Contains a single '@' character not at the beginning or end of a string.
+    # Domain consists of one or more alphanumeric + '_-' characters
+    # followed by a '.' and one or more alphanumeric + '._-' characters
+    # and ending in an alphabetical character.
+    pattern = (
+        r"[a-zA-Z0-9]{1}[a-zA-Z0-9._-]{1,63}@[a-zA-Z0-9_-]+\.[a-zA-Z0-9._-]+[a-zA-Z]{1}"
+    )
+
+    # Match pattern but throw out duplicates and anything that has only numbers in the local part of the address.
+    emails = [
+        email.lower()
+        for email in set(re.findall(pattern, text))
+        if not email.split("@")[0].isnumeric()
+    ]
+    # Remove anything that looks like a file and sort the final results
+    return sorted(filter_out_files(emails))
