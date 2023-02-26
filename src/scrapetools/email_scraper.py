@@ -1,6 +1,6 @@
+import re
 from string import printable
 from urllib.parse import unquote
-import re
 
 
 def validate(email: str) -> bool:

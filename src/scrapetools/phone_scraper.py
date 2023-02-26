@@ -1,5 +1,6 @@
-import phonenumbers
 import re
+
+import phonenumbers
 
 
 def get_num_consecutive_numbers(text: str, reverse: bool = False) -> int:
