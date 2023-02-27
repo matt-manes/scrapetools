@@ -1,11 +1,22 @@
 # Changelog
 
-## 1.1.0 (2023-02-26)
+## 1.1.1 (2023-02-27)
+
+#### Fixes
+
+* fix regex false positives
+
+
+## v1.1.0 (2023-02-26)
 
 #### Performance improvements
 
 * use regex to scrape phone numbers
 * Use regex for email extraction
+#### Others
+
+* build v1.1.0
+* update changelog
 
 
 ## v1.0.2 (2023-02-23)
