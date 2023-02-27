@@ -1,6 +1,7 @@
 import re
 
 import phonenumbers
+from bs4 import BeautifulSoup
 
 
 def get_num_consecutive_numbers(text: str, reverse: bool = False) -> int:
@@ -117,6 +118,12 @@ def scrape_phone_numbers_noregex(text: str) -> list[str]:
 
 def scrape_phone_numbers(text: str) -> list[str]:
     """Scrape phone numbers from text using regex."""
+    text = text.replace("+1", " ")
+    # Find 'tel:' and 'callto:' numbers:
+    numbers = find_by_href(text)
+
+    # Separate only page text, regex pulls too many false positives.
+    text = BeautifulSoup(text, "html.parser").text
     # Validation:
     # Not preceeded by an alphanumeric character and not followed by a numeric character
     # to avoid number strings in long urls and floats etc.
@@ -129,7 +136,9 @@ def scrape_phone_numbers(text: str) -> list[str]:
     # Followed by one or zero ' ', '.', or '-' characters.
     # Followed by four numbers between 0 and 9.
     pattern = r"(?<![0-9a-zA-Z])([(]?[1-9]{1}[0-9]{2}[)]?[ .-]?[1-9]{1}[0-9]{2}[ .-]?[0-9]{4})(?![0-9])"
-    numbers = [re.sub(r"[^0-9]", "", number) for number in re.findall(pattern, text)]
+    numbers.extend(
+        [re.sub(r"[^0-9]", "", number) for number in re.findall(pattern, text)]
+    )
     numbers = [
         number
         for number in numbers
