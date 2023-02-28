@@ -1,10 +1,21 @@
 # Changelog
 
-## 1.1.1 (2023-02-27)
+## 1.1.2 (2023-02-27)
+
+#### Fixes
+
+* modify phonenumber regex ro reduce false positives
+
+
+## v1.1.1 (2023-02-27)
 
 #### Fixes
 
 * fix regex false positives
+#### Others
+
+* build v1.1.1
+* update changelog
 
 
 ## v1.1.0 (2023-02-26)
