@@ -1,10 +1,21 @@
 # Changelog
 
-## 1.1.2 (2023-02-27)
+## 1.1.3 (2023-02-27)
+
+#### Fixes
+
+* remove replacing [a-zA-Z] with " "
+
+
+## v1.1.2 (2023-02-27)
 
 #### Fixes
 
 * modify phonenumber regex ro reduce false positives
+#### Others
+
+* build v1.1.2
+* update changelog
 
 
 ## v1.1.1 (2023-02-27)
