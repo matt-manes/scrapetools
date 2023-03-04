@@ -119,7 +119,7 @@ def scrape_phone_numbers_noregex(text: str) -> list[str]:
 def scrape_phone_numbers(text: str) -> list[str]:
     """Scrape phone numbers from text using regex."""
     text = text.replace("+1", " ")
-    pattern = r"\(?[2-9]{1}[0-9]{2}\)?[ .-]{1}[2-9]{1}[0-9]{2}[ .-]{1}[0-9]{4}"
+    pattern = r"\b\(?[2-9]{1}[0-9]{2}\)?[ .-]{1}[2-9]{1}[0-9]{2}[ .-]{1}[0-9]{4}\b"
     numbers = [re.sub(r"[^0-9]", "", number) for number in re.findall(pattern, text)]
     numbers = [
         number
