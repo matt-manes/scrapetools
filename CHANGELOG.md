@@ -1,10 +1,21 @@
 # Changelog
 
-## 1.1.3 (2023-02-27)
+## 1.1.4 (2023-03-04)
+
+#### Fixes
+
+* improve phone numbers regex
+
+
+## v1.1.3 (2023-02-27)
 
 #### Fixes
 
 * remove replacing [a-zA-Z] with " "
+#### Others
+
+* build v1.1.3
+* update changelog
 
 
 ## v1.1.2 (2023-02-27)
