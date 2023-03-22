@@ -6,9 +6,9 @@ build-backend = "hatchling.build"
 name = "scrapetools"
 authors = [{name="Matt Manes"}]
 description = "A collection of tools to aid in web scraping."
-version = "1.1.4"
+version = "1.1.5"
 requires-python = ">=3.10"
-dependencies = ["bs4~=0.0.1", "phonenumbers~=8.12.57", "pytest~=7.2.1", "bs4~=0.0.1", "phonenumbers~=8.12.57", "pytest~=7.2.1", "bs4~=0.0.1", "phonenumbers~=8.12.57", "pytest~=7.2.1", "bs4~=0.0.1", "phonenumbers~=8.12.57", "pytest~=7.2.1"]
+dependencies = ["bs4", "phonenumbers", "pytest"]
 readme = "README.md"
 keywords = [
     "webscraping",
