@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.8 (2024-02-16)
+
+#### Others
+
+* add missing annotations
+
+
 ## v1.1.7 (2024-02-16)
 
 #### Refactorings
