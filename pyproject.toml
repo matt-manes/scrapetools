@@ -1,7 +1,7 @@
 [project]
 name = "scrapetools"
 description = "A collection of tools to aid in web scraping."
-version = "1.1.7"
+version = "1.1.8"
 dependencies = ["bs4", "phonenumbers", "beautifulsoup4"]
 readme = "README.md"
 keywords = ["webscraping", "web", "html", "email", "scrape", "scraping"]
