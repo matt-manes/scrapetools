@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.7 (2024-02-16)
+
+#### Refactorings
+
+* increase type annotation coverage
+
+
+* add to sdist excludes
+
+
 ## v1.1.4 (2023-03-04)
 
 #### Fixes
