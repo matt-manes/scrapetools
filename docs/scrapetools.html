@@ -18,17 +18,63 @@
         <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
         <div>
 
-            <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
-                   pattern=".+" required>
 
 
-        <h2>Submodules</h2>
-        <ul>
-                <li><a href="scrapetools/email_scraper.html">email_scraper</a></li>
-                <li><a href="scrapetools/input_scraper.html">input_scraper</a></li>
-                <li><a href="scrapetools/link_scraper.html">link_scraper</a></li>
-                <li><a href="scrapetools/phone_scraper.html">phone_scraper</a></li>
-        </ul>
+
+        <h2>API Documentation</h2>
+            <ul class="memberlist">
+            <li>
+                    <a class="function" href="#scrape_emails">scrape_emails</a>
+            </li>
+            <li>
+                    <a class="function" href="#scrape_inputs">scrape_inputs</a>
+            </li>
+            <li>
+                    <a class="class" href="#LinkScraper">LinkScraper</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#LinkScraper.__init__">LinkScraper</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.format_relative_links">format_relative_links</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.remove_duplicates">remove_duplicates</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.process_links">process_links</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.find_all">find_all</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.filter_same_site">filter_same_site</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.scrape_page_links">scrape_page_links</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.scrape_img_links">scrape_img_links</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.scrape_script_links">scrape_script_links</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.scrape_page">scrape_page</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.merge_image_links_from_non_img_tags">merge_image_links_from_non_img_tags</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#LinkScraper.get_links">get_links</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="function" href="#scrape_phone_numbers">scrape_phone_numbers</a>
+            </li>
+    </ul>
 
 
 
@@ -53,191 +99,715 @@ scrapetools    </h1>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">2</span></a><span class="kn">from</span> <span class="nn">.input_scraper</span> <span class="kn">import</span> <span class="n">scrape_inputs</span>
 </span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="kn">from</span> <span class="nn">.link_scraper</span> <span class="kn">import</span> <span class="n">LinkScraper</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos">4</span></a><span class="kn">from</span> <span class="nn">.phone_scraper</span> <span class="kn">import</span> <span class="n">scrape_phone_numbers</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">5</span></a>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">6</span></a><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.1.7&quot;</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">7</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;scrape_emails&quot;</span><span class="p">,</span> <span class="s2">&quot;scrape_inputs&quot;</span><span class="p">,</span> <span class="s2">&quot;LinkScraper&quot;</span><span class="p">,</span> <span class="s2">&quot;scrape_phone_numbers&quot;</span><span class="p">]</span>
 </span></pre></div>
 
 
             </section>
+                <section id="scrape_emails">
+                            <input id="scrape_emails-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">scrape_emails</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">text</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">extra_extensions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="scrape_emails-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#scrape_emails"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="scrape_emails-207"><a href="#scrape_emails-207"><span class="linenos">207</span></a><span class="k">def</span> <span class="nf">scrape_emails</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extra_extensions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="scrape_emails-208"><a href="#scrape_emails-208"><span class="linenos">208</span></a>    <span class="sd">&quot;&quot;&quot;Extract emails from text using regex.</span>
+</span><span id="scrape_emails-209"><a href="#scrape_emails-209"><span class="linenos">209</span></a>
+</span><span id="scrape_emails-210"><a href="#scrape_emails-210"><span class="linenos">210</span></a><span class="sd">    :param text: The text to scrape.</span>
+</span><span id="scrape_emails-211"><a href="#scrape_emails-211"><span class="linenos">211</span></a>
+</span><span id="scrape_emails-212"><a href="#scrape_emails-212"><span class="linenos">212</span></a><span class="sd">    :param extra_extensions: Extra file extensions to filter out.&quot;&quot;&quot;</span>
+</span><span id="scrape_emails-213"><a href="#scrape_emails-213"><span class="linenos">213</span></a>    <span class="c1"># Remove chunks with no &quot;@&quot; in them to reduce processing</span>
+</span><span id="scrape_emails-214"><a href="#scrape_emails-214"><span class="linenos">214</span></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">unquote</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;@&quot;</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">))</span>
+</span><span id="scrape_emails-215"><a href="#scrape_emails-215"><span class="linenos">215</span></a>
+</span><span id="scrape_emails-216"><a href="#scrape_emails-216"><span class="linenos">216</span></a>    <span class="c1"># Replace any % encoding or unicode hex strings with spaces</span>
+</span><span id="scrape_emails-217"><a href="#scrape_emails-217"><span class="linenos">217</span></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">replace_unicodehex</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span id="scrape_emails-218"><a href="#scrape_emails-218"><span class="linenos">218</span></a>
+</span><span id="scrape_emails-219"><a href="#scrape_emails-219"><span class="linenos">219</span></a>    <span class="c1"># Validation:</span>
+</span><span id="scrape_emails-220"><a href="#scrape_emails-220"><span class="linenos">220</span></a>    <span class="c1"># Starts with an alphanumeric character.</span>
+</span><span id="scrape_emails-221"><a href="#scrape_emails-221"><span class="linenos">221</span></a>    <span class="c1"># Local part consists of 1-63 alphanumeric + &#39;._-&#39; characters.</span>
+</span><span id="scrape_emails-222"><a href="#scrape_emails-222"><span class="linenos">222</span></a>    <span class="c1"># Contains a single &#39;@&#39; character not at the beginning or end of a string.</span>
+</span><span id="scrape_emails-223"><a href="#scrape_emails-223"><span class="linenos">223</span></a>    <span class="c1"># Domain consists of one or more alphanumeric + &#39;_-&#39; characters</span>
+</span><span id="scrape_emails-224"><a href="#scrape_emails-224"><span class="linenos">224</span></a>    <span class="c1"># followed by a &#39;.&#39; and one or more alphanumeric + &#39;._-&#39; characters</span>
+</span><span id="scrape_emails-225"><a href="#scrape_emails-225"><span class="linenos">225</span></a>    <span class="c1"># and ending in an alphabetical character.</span>
+</span><span id="scrape_emails-226"><a href="#scrape_emails-226"><span class="linenos">226</span></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="scrape_emails-227"><a href="#scrape_emails-227"><span class="linenos">227</span></a>        <span class="sa">r</span><span class="s2">&quot;[a-zA-Z0-9]</span><span class="si">{1}</span><span class="s2">[a-zA-Z0-9._-]{1,63}@[a-zA-Z0-9_-]+\.[a-zA-Z0-9._-]+[a-zA-Z]</span><span class="si">{1}</span><span class="s2">&quot;</span>
+</span><span id="scrape_emails-228"><a href="#scrape_emails-228"><span class="linenos">228</span></a>    <span class="p">)</span>
+</span><span id="scrape_emails-229"><a href="#scrape_emails-229"><span class="linenos">229</span></a>
+</span><span id="scrape_emails-230"><a href="#scrape_emails-230"><span class="linenos">230</span></a>    <span class="c1"># Match pattern but throw out duplicates and anything that has only numbers in the local part of the address.</span>
+</span><span id="scrape_emails-231"><a href="#scrape_emails-231"><span class="linenos">231</span></a>    <span class="n">emails</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="scrape_emails-232"><a href="#scrape_emails-232"><span class="linenos">232</span></a>        <span class="n">email</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span><span id="scrape_emails-233"><a href="#scrape_emails-233"><span class="linenos">233</span></a>        <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span><span id="scrape_emails-234"><a href="#scrape_emails-234"><span class="linenos">234</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">email</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span>
+</span><span id="scrape_emails-235"><a href="#scrape_emails-235"><span class="linenos">235</span></a>    <span class="p">]</span>
+</span><span id="scrape_emails-236"><a href="#scrape_emails-236"><span class="linenos">236</span></a>    <span class="c1"># Remove anything that looks like a file and sort the final results</span>
+</span><span id="scrape_emails-237"><a href="#scrape_emails-237"><span class="linenos">237</span></a>    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">filter_out_files</span><span class="p">(</span><span class="n">emails</span><span class="p">))</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Extract emails from text using regex.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><p><strong>text</strong>:  The text to scrape.</p></li>
+<li><p><strong>extra_extensions</strong>:  Extra file extensions to filter out.</p></li>
+</ul>
+</div>
+
+
+                </section>
+                <section id="scrape_inputs">
+                            <input id="scrape_inputs-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">scrape_inputs</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">source</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">bs4</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">bs4</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">bs4</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">bs4</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">bs4</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">Tag</span><span class="p">]]</span>:</span></span>
+
+                <label class="view-source-button" for="scrape_inputs-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#scrape_inputs"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="scrape_inputs-6"><a href="#scrape_inputs-6"><span class="linenos"> 6</span></a><span class="k">def</span> <span class="nf">scrape_inputs</span><span class="p">(</span>
+</span><span id="scrape_inputs-7"><a href="#scrape_inputs-7"><span class="linenos"> 7</span></a>    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="scrape_inputs-8"><a href="#scrape_inputs-8"><span class="linenos"> 8</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tag</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tag</span><span class="p">]]:</span>
+</span><span id="scrape_inputs-9"><a href="#scrape_inputs-9"><span class="linenos"> 9</span></a>    <span class="sd">&quot;&quot;&quot;Searches html for various user input elements.</span>
+</span><span id="scrape_inputs-10"><a href="#scrape_inputs-10"><span class="linenos">10</span></a>
+</span><span id="scrape_inputs-11"><a href="#scrape_inputs-11"><span class="linenos">11</span></a><span class="sd">    Returns a tuple where each element is a list of BeautifulSoup Tag elements.</span>
+</span><span id="scrape_inputs-12"><a href="#scrape_inputs-12"><span class="linenos">12</span></a>
+</span><span id="scrape_inputs-13"><a href="#scrape_inputs-13"><span class="linenos">13</span></a><span class="sd">    The tuple elements are forms, inputs, buttons, select elements,</span>
+</span><span id="scrape_inputs-14"><a href="#scrape_inputs-14"><span class="linenos">14</span></a><span class="sd">    and text_areas. If an element type was not found, it will be an empty list.</span>
+</span><span id="scrape_inputs-15"><a href="#scrape_inputs-15"><span class="linenos">15</span></a>
+</span><span id="scrape_inputs-16"><a href="#scrape_inputs-16"><span class="linenos">16</span></a><span class="sd">    The inputs, buttons, select elements, and text_areas are ones</span>
+</span><span id="scrape_inputs-17"><a href="#scrape_inputs-17"><span class="linenos">17</span></a><span class="sd">    not already found in a form element.&quot;&quot;&quot;</span>
+</span><span id="scrape_inputs-18"><a href="#scrape_inputs-18"><span class="linenos">18</span></a>    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+</span><span id="scrape_inputs-19"><a href="#scrape_inputs-19"><span class="linenos">19</span></a>    <span class="n">forms</span> <span class="o">=</span> <span class="n">soup</span><span class="p">(</span><span class="s2">&quot;form&quot;</span><span class="p">)</span>
+</span><span id="scrape_inputs-20"><a href="#scrape_inputs-20"><span class="linenos">20</span></a>    <span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="n">forms</span><span class="p">:</span>
+</span><span id="scrape_inputs-21"><a href="#scrape_inputs-21"><span class="linenos">21</span></a>        <span class="n">form</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+</span><span id="scrape_inputs-22"><a href="#scrape_inputs-22"><span class="linenos">22</span></a>    <span class="n">inputs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">)</span>
+</span><span id="scrape_inputs-23"><a href="#scrape_inputs-23"><span class="linenos">23</span></a>    <span class="n">buttons</span> <span class="o">=</span> <span class="n">soup</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">)</span>
+</span><span id="scrape_inputs-24"><a href="#scrape_inputs-24"><span class="linenos">24</span></a>    <span class="n">selects</span> <span class="o">=</span> <span class="n">soup</span><span class="p">(</span><span class="s2">&quot;select&quot;</span><span class="p">)</span>
+</span><span id="scrape_inputs-25"><a href="#scrape_inputs-25"><span class="linenos">25</span></a>    <span class="n">text_areas</span> <span class="o">=</span> <span class="n">soup</span><span class="p">(</span><span class="s2">&quot;textAreas&quot;</span><span class="p">)</span>
+</span><span id="scrape_inputs-26"><a href="#scrape_inputs-26"><span class="linenos">26</span></a>
+</span><span id="scrape_inputs-27"><a href="#scrape_inputs-27"><span class="linenos">27</span></a>    <span class="k">return</span> <span class="n">forms</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">buttons</span><span class="p">,</span> <span class="n">selects</span><span class="p">,</span> <span class="n">text_areas</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Searches html for various user input elements.</p>
+
+<p>Returns a tuple where each element is a list of BeautifulSoup Tag elements.</p>
+
+<p>The tuple elements are forms, inputs, buttons, select elements,
+and text_areas. If an element type was not found, it will be an empty list.</p>
+
+<p>The inputs, buttons, select elements, and text_areas are ones
+not already found in a form element.</p>
+</div>
+
+
+                </section>
+                <section id="LinkScraper">
+                            <input id="LinkScraper-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">LinkScraper</span>:
+
+                <label class="view-source-button" for="LinkScraper-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper-8"><a href="#LinkScraper-8"><span class="linenos">  8</span></a><span class="k">class</span> <span class="nc">LinkScraper</span><span class="p">:</span>
+</span><span id="LinkScraper-9"><a href="#LinkScraper-9"><span class="linenos">  9</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_src</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="LinkScraper-10"><a href="#LinkScraper-10"><span class="linenos"> 10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_src</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-11"><a href="#LinkScraper-11"><span class="linenos"> 11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">page_url</span><span class="p">)</span>
+</span><span id="LinkScraper-12"><a href="#LinkScraper-12"><span class="linenos"> 12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper-13"><a href="#LinkScraper-13"><span class="linenos"> 13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper-14"><a href="#LinkScraper-14"><span class="linenos"> 14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper-15"><a href="#LinkScraper-15"><span class="linenos"> 15</span></a>
+</span><span id="LinkScraper-16"><a href="#LinkScraper-16"><span class="linenos"> 16</span></a>    <span class="k">def</span> <span class="nf">format_relative_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper-17"><a href="#LinkScraper-17"><span class="linenos"> 17</span></a>        <span class="sd">&quot;&quot;&quot;Parses list of links and constructs a full url</span>
+</span><span id="LinkScraper-18"><a href="#LinkScraper-18"><span class="linenos"> 18</span></a><span class="sd">        according to self.parsed_url for the ones that don&#39;t have a</span>
+</span><span id="LinkScraper-19"><a href="#LinkScraper-19"><span class="linenos"> 19</span></a><span class="sd">        &#39;netloc&#39; property returned by urlparse.</span>
+</span><span id="LinkScraper-20"><a href="#LinkScraper-20"><span class="linenos"> 20</span></a>
+</span><span id="LinkScraper-21"><a href="#LinkScraper-21"><span class="linenos"> 21</span></a><span class="sd">        Full urls are returned unedited other than stripping any</span>
+</span><span id="LinkScraper-22"><a href="#LinkScraper-22"><span class="linenos"> 22</span></a><span class="sd">        leading or trailing forward slashes.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-23"><a href="#LinkScraper-23"><span class="linenos"> 23</span></a>        <span class="n">formatted_links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper-24"><a href="#LinkScraper-24"><span class="linenos"> 24</span></a>        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+</span><span id="LinkScraper-25"><a href="#LinkScraper-25"><span class="linenos"> 25</span></a>            <span class="n">link</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="LinkScraper-26"><a href="#LinkScraper-26"><span class="linenos"> 26</span></a>                <span class="n">link</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; </span><span class="se">\n\t\r</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-27"><a href="#LinkScraper-27"><span class="linenos"> 27</span></a>                <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-28"><a href="#LinkScraper-28"><span class="linenos"> 28</span></a>                <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-29"><a href="#LinkScraper-29"><span class="linenos"> 29</span></a>                <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-30"><a href="#LinkScraper-30"><span class="linenos"> 30</span></a>            <span class="p">)</span>
+</span><span id="LinkScraper-31"><a href="#LinkScraper-31"><span class="linenos"> 31</span></a>            <span class="n">parsed_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span><span id="LinkScraper-32"><a href="#LinkScraper-32"><span class="linenos"> 32</span></a>            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">ch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="s2">&quot;@ &quot;</span><span class="p">):</span>
+</span><span id="LinkScraper-33"><a href="#LinkScraper-33"><span class="linenos"> 33</span></a>                <span class="n">parsed_url</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parsed_url</span><span class="p">)</span>
+</span><span id="LinkScraper-34"><a href="#LinkScraper-34"><span class="linenos"> 34</span></a>                <span class="k">if</span> <span class="n">parsed_url</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper-35"><a href="#LinkScraper-35"><span class="linenos"> 35</span></a>                    <span class="n">parsed_url</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">scheme</span>
+</span><span id="LinkScraper-36"><a href="#LinkScraper-36"><span class="linenos"> 36</span></a>                <span class="k">if</span> <span class="n">parsed_url</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper-37"><a href="#LinkScraper-37"><span class="linenos"> 37</span></a>                    <span class="n">parsed_url</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">netloc</span>
+</span><span id="LinkScraper-38"><a href="#LinkScraper-38"><span class="linenos"> 38</span></a>                <span class="n">formatted_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">urlunparse</span><span class="p">(</span><span class="n">parsed_url</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span>
+</span><span id="LinkScraper-39"><a href="#LinkScraper-39"><span class="linenos"> 39</span></a>        <span class="k">return</span> <span class="n">formatted_links</span>
+</span><span id="LinkScraper-40"><a href="#LinkScraper-40"><span class="linenos"> 40</span></a>
+</span><span id="LinkScraper-41"><a href="#LinkScraper-41"><span class="linenos"> 41</span></a>    <span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+</span><span id="LinkScraper-42"><a href="#LinkScraper-42"><span class="linenos"> 42</span></a>        <span class="sd">&quot;&quot;&quot;Removes duplicate members.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-43"><a href="#LinkScraper-43"><span class="linenos"> 43</span></a>        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</span><span id="LinkScraper-44"><a href="#LinkScraper-44"><span class="linenos"> 44</span></a>
+</span><span id="LinkScraper-45"><a href="#LinkScraper-45"><span class="linenos"> 45</span></a>    <span class="k">def</span> <span class="nf">process_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper-46"><a href="#LinkScraper-46"><span class="linenos"> 46</span></a>        <span class="sd">&quot;&quot;&quot;Formats relative links, removes duplicates, and sorts in alphabetical order.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-47"><a href="#LinkScraper-47"><span class="linenos"> 47</span></a>        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format_relative_links</span><span class="p">(</span><span class="n">links</span><span class="p">)))</span>
+</span><span id="LinkScraper-48"><a href="#LinkScraper-48"><span class="linenos"> 48</span></a>
+</span><span id="LinkScraper-49"><a href="#LinkScraper-49"><span class="linenos"> 49</span></a>    <span class="k">def</span> <span class="nf">find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attribute_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper-50"><a href="#LinkScraper-50"><span class="linenos"> 50</span></a>        <span class="sd">&quot;&quot;&quot;Finds all results according to tag_name and attribute_name.\n</span>
+</span><span id="LinkScraper-51"><a href="#LinkScraper-51"><span class="linenos"> 51</span></a><span class="sd">        Filters out fragments.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-52"><a href="#LinkScraper-52"><span class="linenos"> 52</span></a>        <span class="k">return</span> <span class="p">[</span>
+</span><span id="LinkScraper-53"><a href="#LinkScraper-53"><span class="linenos"> 53</span></a>            <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">)</span>
+</span><span id="LinkScraper-54"><a href="#LinkScraper-54"><span class="linenos"> 54</span></a>            <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">soup</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="LinkScraper-55"><a href="#LinkScraper-55"><span class="linenos"> 55</span></a>            <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="LinkScraper-56"><a href="#LinkScraper-56"><span class="linenos"> 56</span></a>            <span class="ow">and</span> <span class="s2">&quot;#&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">)</span>
+</span><span id="LinkScraper-57"><a href="#LinkScraper-57"><span class="linenos"> 57</span></a>        <span class="p">]</span>
+</span><span id="LinkScraper-58"><a href="#LinkScraper-58"><span class="linenos"> 58</span></a>
+</span><span id="LinkScraper-59"><a href="#LinkScraper-59"><span class="linenos"> 59</span></a>    <span class="k">def</span> <span class="nf">filter_same_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper-60"><a href="#LinkScraper-60"><span class="linenos"> 60</span></a>        <span class="sd">&quot;&quot;&quot;Filters out links that don&#39;t match self.parsed_url.netloc&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-61"><a href="#LinkScraper-61"><span class="linenos"> 61</span></a>        <span class="k">return</span> <span class="p">[</span>
+</span><span id="LinkScraper-62"><a href="#LinkScraper-62"><span class="linenos"> 62</span></a>            <span class="n">link</span>
+</span><span id="LinkScraper-63"><a href="#LinkScraper-63"><span class="linenos"> 63</span></a>            <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span>
+</span><span id="LinkScraper-64"><a href="#LinkScraper-64"><span class="linenos"> 64</span></a>            <span class="k">if</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">link</span><span class="p">)</span><span class="o">.</span><span class="n">netloc</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;www.&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-65"><a href="#LinkScraper-65"><span class="linenos"> 65</span></a>            <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">netloc</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;www.&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-66"><a href="#LinkScraper-66"><span class="linenos"> 66</span></a>        <span class="p">]</span>
+</span><span id="LinkScraper-67"><a href="#LinkScraper-67"><span class="linenos"> 67</span></a>
+</span><span id="LinkScraper-68"><a href="#LinkScraper-68"><span class="linenos"> 68</span></a>    <span class="k">def</span> <span class="nf">scrape_page_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper-69"><a href="#LinkScraper-69"><span class="linenos"> 69</span></a>        <span class="sd">&quot;&quot;&quot;Scrape links according to tags and attributes.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-70"><a href="#LinkScraper-70"><span class="linenos"> 70</span></a>        <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper-71"><a href="#LinkScraper-71"><span class="linenos"> 71</span></a>        <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="p">[</span>
+</span><span id="LinkScraper-72"><a href="#LinkScraper-72"><span class="linenos"> 72</span></a>            <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper-73"><a href="#LinkScraper-73"><span class="linenos"> 73</span></a>            <span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper-74"><a href="#LinkScraper-74"><span class="linenos"> 74</span></a>            <span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper-75"><a href="#LinkScraper-75"><span class="linenos"> 75</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper-76"><a href="#LinkScraper-76"><span class="linenos"> 76</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;data-src&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper-77"><a href="#LinkScraper-77"><span class="linenos"> 77</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;data-url&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper-78"><a href="#LinkScraper-78"><span class="linenos"> 78</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper-79"><a href="#LinkScraper-79"><span class="linenos"> 79</span></a>        <span class="p">]:</span>
+</span><span id="LinkScraper-80"><a href="#LinkScraper-80"><span class="linenos"> 80</span></a>            <span class="n">links</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">attribute</span><span class="p">))</span>
+</span><span id="LinkScraper-81"><a href="#LinkScraper-81"><span class="linenos"> 81</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_links</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</span><span id="LinkScraper-82"><a href="#LinkScraper-82"><span class="linenos"> 82</span></a>
+</span><span id="LinkScraper-83"><a href="#LinkScraper-83"><span class="linenos"> 83</span></a>    <span class="k">def</span> <span class="nf">scrape_img_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper-84"><a href="#LinkScraper-84"><span class="linenos"> 84</span></a>        <span class="sd">&quot;&quot;&quot;Scrape links from src attribute of &lt;img&gt; tags.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-85"><a href="#LinkScraper-85"><span class="linenos"> 85</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_links</span><span class="p">(</span>
+</span><span id="LinkScraper-86"><a href="#LinkScraper-86"><span class="linenos"> 86</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="s2">&quot;data-src&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper-87"><a href="#LinkScraper-87"><span class="linenos"> 87</span></a>        <span class="p">)</span>
+</span><span id="LinkScraper-88"><a href="#LinkScraper-88"><span class="linenos"> 88</span></a>
+</span><span id="LinkScraper-89"><a href="#LinkScraper-89"><span class="linenos"> 89</span></a>    <span class="k">def</span> <span class="nf">scrape_script_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper-90"><a href="#LinkScraper-90"><span class="linenos"> 90</span></a>        <span class="sd">&quot;&quot;&quot;Scrape script links from src attribute of &lt;script&gt; tags.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-91"><a href="#LinkScraper-91"><span class="linenos"> 91</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_links</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">))</span>
+</span><span id="LinkScraper-92"><a href="#LinkScraper-92"><span class="linenos"> 92</span></a>
+</span><span id="LinkScraper-93"><a href="#LinkScraper-93"><span class="linenos"> 93</span></a>    <span class="k">def</span> <span class="nf">scrape_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper-94"><a href="#LinkScraper-94"><span class="linenos"> 94</span></a>        <span class="sd">&quot;&quot;&quot;Scrape all link types.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-95"><a href="#LinkScraper-95"><span class="linenos"> 95</span></a>        <span class="k">for</span> <span class="n">scrape</span> <span class="ow">in</span> <span class="p">[</span>
+</span><span id="LinkScraper-96"><a href="#LinkScraper-96"><span class="linenos"> 96</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">scrape_page_links</span><span class="p">,</span>
+</span><span id="LinkScraper-97"><a href="#LinkScraper-97"><span class="linenos"> 97</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">scrape_img_links</span><span class="p">,</span>
+</span><span id="LinkScraper-98"><a href="#LinkScraper-98"><span class="linenos"> 98</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">scrape_script_links</span><span class="p">,</span>
+</span><span id="LinkScraper-99"><a href="#LinkScraper-99"><span class="linenos"> 99</span></a>        <span class="p">]:</span>
+</span><span id="LinkScraper-100"><a href="#LinkScraper-100"><span class="linenos">100</span></a>            <span class="n">scrape</span><span class="p">()</span>
+</span><span id="LinkScraper-101"><a href="#LinkScraper-101"><span class="linenos">101</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">merge_image_links_from_non_img_tags</span><span class="p">()</span>
+</span><span id="LinkScraper-102"><a href="#LinkScraper-102"><span class="linenos">102</span></a>
+</span><span id="LinkScraper-103"><a href="#LinkScraper-103"><span class="linenos">103</span></a>    <span class="k">def</span> <span class="nf">merge_image_links_from_non_img_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper-104"><a href="#LinkScraper-104"><span class="linenos">104</span></a>        <span class="sd">&quot;&quot;&quot;Finds links in self.script_links and self.page_links</span>
+</span><span id="LinkScraper-105"><a href="#LinkScraper-105"><span class="linenos">105</span></a><span class="sd">        that have one of these image file extensions and adds them</span>
+</span><span id="LinkScraper-106"><a href="#LinkScraper-106"><span class="linenos">106</span></a><span class="sd">        to self.img_links&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-107"><a href="#LinkScraper-107"><span class="linenos">107</span></a>        <span class="n">formats</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="LinkScraper-108"><a href="#LinkScraper-108"><span class="linenos">108</span></a>            <span class="s2">&quot;.jpg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-109"><a href="#LinkScraper-109"><span class="linenos">109</span></a>            <span class="s2">&quot;.jpeg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-110"><a href="#LinkScraper-110"><span class="linenos">110</span></a>            <span class="s2">&quot;.png&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-111"><a href="#LinkScraper-111"><span class="linenos">111</span></a>            <span class="s2">&quot;.svg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-112"><a href="#LinkScraper-112"><span class="linenos">112</span></a>            <span class="s2">&quot;.bmp&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-113"><a href="#LinkScraper-113"><span class="linenos">113</span></a>            <span class="s2">&quot;.tiff&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-114"><a href="#LinkScraper-114"><span class="linenos">114</span></a>            <span class="s2">&quot;.pdf&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-115"><a href="#LinkScraper-115"><span class="linenos">115</span></a>            <span class="s2">&quot;.eps&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-116"><a href="#LinkScraper-116"><span class="linenos">116</span></a>            <span class="s2">&quot;.gif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-117"><a href="#LinkScraper-117"><span class="linenos">117</span></a>            <span class="s2">&quot;.jfif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-118"><a href="#LinkScraper-118"><span class="linenos">118</span></a>            <span class="s2">&quot;.webp&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-119"><a href="#LinkScraper-119"><span class="linenos">119</span></a>            <span class="s2">&quot;.heif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-120"><a href="#LinkScraper-120"><span class="linenos">120</span></a>            <span class="s2">&quot;.avif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-121"><a href="#LinkScraper-121"><span class="linenos">121</span></a>            <span class="s2">&quot;.bat&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-122"><a href="#LinkScraper-122"><span class="linenos">122</span></a>            <span class="s2">&quot;.bpg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-123"><a href="#LinkScraper-123"><span class="linenos">123</span></a>        <span class="p">]</span>
+</span><span id="LinkScraper-124"><a href="#LinkScraper-124"><span class="linenos">124</span></a>        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span><span class="p">:</span>
+</span><span id="LinkScraper-125"><a href="#LinkScraper-125"><span class="linenos">125</span></a>            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">ext</span> <span class="ow">in</span> <span class="n">link</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">):</span>
+</span><span id="LinkScraper-126"><a href="#LinkScraper-126"><span class="linenos">126</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span><span id="LinkScraper-127"><a href="#LinkScraper-127"><span class="linenos">127</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_links</span><span class="p">))</span>
+</span><span id="LinkScraper-128"><a href="#LinkScraper-128"><span class="linenos">128</span></a>
+</span><span id="LinkScraper-129"><a href="#LinkScraper-129"><span class="linenos">129</span></a>    <span class="k">def</span> <span class="nf">get_links</span><span class="p">(</span>
+</span><span id="LinkScraper-130"><a href="#LinkScraper-130"><span class="linenos">130</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="LinkScraper-131"><a href="#LinkScraper-131"><span class="linenos">131</span></a>        <span class="n">link_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper-132"><a href="#LinkScraper-132"><span class="linenos">132</span></a>        <span class="n">same_site_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="LinkScraper-133"><a href="#LinkScraper-133"><span class="linenos">133</span></a>        <span class="n">excluded_links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="LinkScraper-134"><a href="#LinkScraper-134"><span class="linenos">134</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper-135"><a href="#LinkScraper-135"><span class="linenos">135</span></a>        <span class="sd">&quot;&quot;&quot;Returns a list of urls found on the page.</span>
+</span><span id="LinkScraper-136"><a href="#LinkScraper-136"><span class="linenos">136</span></a>
+</span><span id="LinkScraper-137"><a href="#LinkScraper-137"><span class="linenos">137</span></a><span class="sd">        :param link_type: Can be &#39;all&#39;, &#39;page&#39;, &#39;img&#39;, or &#39;script&#39;.</span>
+</span><span id="LinkScraper-138"><a href="#LinkScraper-138"><span class="linenos">138</span></a>
+</span><span id="LinkScraper-139"><a href="#LinkScraper-139"><span class="linenos">139</span></a><span class="sd">        :param same_site_only: Excludes external urls if True.</span>
+</span><span id="LinkScraper-140"><a href="#LinkScraper-140"><span class="linenos">140</span></a>
+</span><span id="LinkScraper-141"><a href="#LinkScraper-141"><span class="linenos">141</span></a><span class="sd">        :param excluded_links: A list of urls to filter out of the results.</span>
+</span><span id="LinkScraper-142"><a href="#LinkScraper-142"><span class="linenos">142</span></a><span class="sd">        Useful for excluding duplicates when recursively scraping a website.</span>
+</span><span id="LinkScraper-143"><a href="#LinkScraper-143"><span class="linenos">143</span></a><span class="sd">        Can also be used with link_type=&#39;all&#39; to get two link types in one call:</span>
+</span><span id="LinkScraper-144"><a href="#LinkScraper-144"><span class="linenos">144</span></a>
+</span><span id="LinkScraper-145"><a href="#LinkScraper-145"><span class="linenos">145</span></a><span class="sd">        e.g. links = scraper.get_links(link_type = &#39;all&#39;, excluded_links = scraper.script_links)</span>
+</span><span id="LinkScraper-146"><a href="#LinkScraper-146"><span class="linenos">146</span></a><span class="sd">        will return page links and img links.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper-147"><a href="#LinkScraper-147"><span class="linenos">147</span></a>        <span class="k">match</span> <span class="n">link_type</span><span class="p">:</span>
+</span><span id="LinkScraper-148"><a href="#LinkScraper-148"><span class="linenos">148</span></a>            <span class="k">case</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper-149"><a href="#LinkScraper-149"><span class="linenos">149</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span>
+</span><span id="LinkScraper-150"><a href="#LinkScraper-150"><span class="linenos">150</span></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span>
+</span><span id="LinkScraper-151"><a href="#LinkScraper-151"><span class="linenos">151</span></a>                <span class="p">)</span>
+</span><span id="LinkScraper-152"><a href="#LinkScraper-152"><span class="linenos">152</span></a>            <span class="k">case</span> <span class="s2">&quot;page&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper-153"><a href="#LinkScraper-153"><span class="linenos">153</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span>
+</span><span id="LinkScraper-154"><a href="#LinkScraper-154"><span class="linenos">154</span></a>            <span class="k">case</span> <span class="s2">&quot;img&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper-155"><a href="#LinkScraper-155"><span class="linenos">155</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span>
+</span><span id="LinkScraper-156"><a href="#LinkScraper-156"><span class="linenos">156</span></a>            <span class="k">case</span> <span class="s2">&quot;script&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper-157"><a href="#LinkScraper-157"><span class="linenos">157</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span>
+</span><span id="LinkScraper-158"><a href="#LinkScraper-158"><span class="linenos">158</span></a>            <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
+</span><span id="LinkScraper-159"><a href="#LinkScraper-159"><span class="linenos">159</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper-160"><a href="#LinkScraper-160"><span class="linenos">160</span></a>        <span class="k">if</span> <span class="n">same_site_only</span><span class="p">:</span>
+</span><span id="LinkScraper-161"><a href="#LinkScraper-161"><span class="linenos">161</span></a>            <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_same_site</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</span><span id="LinkScraper-162"><a href="#LinkScraper-162"><span class="linenos">162</span></a>        <span class="k">if</span> <span class="n">excluded_links</span><span class="p">:</span>
+</span><span id="LinkScraper-163"><a href="#LinkScraper-163"><span class="linenos">163</span></a>            <span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">link</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span> <span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded_links</span><span class="p">]</span>
+</span><span id="LinkScraper-164"><a href="#LinkScraper-164"><span class="linenos">164</span></a>        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            <div id="LinkScraper.__init__" class="classattr">
+                                        <input id="LinkScraper.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">LinkScraper</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">html_src</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">page_url</span><span class="p">:</span> <span class="nb">str</span></span>)</span>
+
+                <label class="view-source-button" for="LinkScraper.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.__init__-9"><a href="#LinkScraper.__init__-9"><span class="linenos"> 9</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_src</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="LinkScraper.__init__-10"><a href="#LinkScraper.__init__-10"><span class="linenos">10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_src</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.__init__-11"><a href="#LinkScraper.__init__-11"><span class="linenos">11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">page_url</span><span class="p">)</span>
+</span><span id="LinkScraper.__init__-12"><a href="#LinkScraper.__init__-12"><span class="linenos">12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper.__init__-13"><a href="#LinkScraper.__init__-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper.__init__-14"><a href="#LinkScraper.__init__-14"><span class="linenos">14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span> <span class="o">=</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="LinkScraper.format_relative_links" class="classattr">
+                                        <input id="LinkScraper.format_relative_links-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">format_relative_links</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="LinkScraper.format_relative_links-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.format_relative_links"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.format_relative_links-16"><a href="#LinkScraper.format_relative_links-16"><span class="linenos">16</span></a>    <span class="k">def</span> <span class="nf">format_relative_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper.format_relative_links-17"><a href="#LinkScraper.format_relative_links-17"><span class="linenos">17</span></a>        <span class="sd">&quot;&quot;&quot;Parses list of links and constructs a full url</span>
+</span><span id="LinkScraper.format_relative_links-18"><a href="#LinkScraper.format_relative_links-18"><span class="linenos">18</span></a><span class="sd">        according to self.parsed_url for the ones that don&#39;t have a</span>
+</span><span id="LinkScraper.format_relative_links-19"><a href="#LinkScraper.format_relative_links-19"><span class="linenos">19</span></a><span class="sd">        &#39;netloc&#39; property returned by urlparse.</span>
+</span><span id="LinkScraper.format_relative_links-20"><a href="#LinkScraper.format_relative_links-20"><span class="linenos">20</span></a>
+</span><span id="LinkScraper.format_relative_links-21"><a href="#LinkScraper.format_relative_links-21"><span class="linenos">21</span></a><span class="sd">        Full urls are returned unedited other than stripping any</span>
+</span><span id="LinkScraper.format_relative_links-22"><a href="#LinkScraper.format_relative_links-22"><span class="linenos">22</span></a><span class="sd">        leading or trailing forward slashes.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.format_relative_links-23"><a href="#LinkScraper.format_relative_links-23"><span class="linenos">23</span></a>        <span class="n">formatted_links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper.format_relative_links-24"><a href="#LinkScraper.format_relative_links-24"><span class="linenos">24</span></a>        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+</span><span id="LinkScraper.format_relative_links-25"><a href="#LinkScraper.format_relative_links-25"><span class="linenos">25</span></a>            <span class="n">link</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="LinkScraper.format_relative_links-26"><a href="#LinkScraper.format_relative_links-26"><span class="linenos">26</span></a>                <span class="n">link</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; </span><span class="se">\n\t\r</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.format_relative_links-27"><a href="#LinkScraper.format_relative_links-27"><span class="linenos">27</span></a>                <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.format_relative_links-28"><a href="#LinkScraper.format_relative_links-28"><span class="linenos">28</span></a>                <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.format_relative_links-29"><a href="#LinkScraper.format_relative_links-29"><span class="linenos">29</span></a>                <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.format_relative_links-30"><a href="#LinkScraper.format_relative_links-30"><span class="linenos">30</span></a>            <span class="p">)</span>
+</span><span id="LinkScraper.format_relative_links-31"><a href="#LinkScraper.format_relative_links-31"><span class="linenos">31</span></a>            <span class="n">parsed_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span><span id="LinkScraper.format_relative_links-32"><a href="#LinkScraper.format_relative_links-32"><span class="linenos">32</span></a>            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">ch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="s2">&quot;@ &quot;</span><span class="p">):</span>
+</span><span id="LinkScraper.format_relative_links-33"><a href="#LinkScraper.format_relative_links-33"><span class="linenos">33</span></a>                <span class="n">parsed_url</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parsed_url</span><span class="p">)</span>
+</span><span id="LinkScraper.format_relative_links-34"><a href="#LinkScraper.format_relative_links-34"><span class="linenos">34</span></a>                <span class="k">if</span> <span class="n">parsed_url</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper.format_relative_links-35"><a href="#LinkScraper.format_relative_links-35"><span class="linenos">35</span></a>                    <span class="n">parsed_url</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">scheme</span>
+</span><span id="LinkScraper.format_relative_links-36"><a href="#LinkScraper.format_relative_links-36"><span class="linenos">36</span></a>                <span class="k">if</span> <span class="n">parsed_url</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper.format_relative_links-37"><a href="#LinkScraper.format_relative_links-37"><span class="linenos">37</span></a>                    <span class="n">parsed_url</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">netloc</span>
+</span><span id="LinkScraper.format_relative_links-38"><a href="#LinkScraper.format_relative_links-38"><span class="linenos">38</span></a>                <span class="n">formatted_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">urlunparse</span><span class="p">(</span><span class="n">parsed_url</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span>
+</span><span id="LinkScraper.format_relative_links-39"><a href="#LinkScraper.format_relative_links-39"><span class="linenos">39</span></a>        <span class="k">return</span> <span class="n">formatted_links</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Parses list of links and constructs a full url
+according to self.parsed_url for the ones that don't have a
+'netloc' property returned by urlparse.</p>
+
+<p>Full urls are returned unedited other than stripping any
+leading or trailing forward slashes.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.remove_duplicates" class="classattr">
+                                        <input id="LinkScraper.remove_duplicates-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">remove_duplicates</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">obj</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="LinkScraper.remove_duplicates-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.remove_duplicates"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.remove_duplicates-41"><a href="#LinkScraper.remove_duplicates-41"><span class="linenos">41</span></a>    <span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+</span><span id="LinkScraper.remove_duplicates-42"><a href="#LinkScraper.remove_duplicates-42"><span class="linenos">42</span></a>        <span class="sd">&quot;&quot;&quot;Removes duplicate members.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.remove_duplicates-43"><a href="#LinkScraper.remove_duplicates-43"><span class="linenos">43</span></a>        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Removes duplicate members.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.process_links" class="classattr">
+                                        <input id="LinkScraper.process_links-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">process_links</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="LinkScraper.process_links-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.process_links"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.process_links-45"><a href="#LinkScraper.process_links-45"><span class="linenos">45</span></a>    <span class="k">def</span> <span class="nf">process_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper.process_links-46"><a href="#LinkScraper.process_links-46"><span class="linenos">46</span></a>        <span class="sd">&quot;&quot;&quot;Formats relative links, removes duplicates, and sorts in alphabetical order.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.process_links-47"><a href="#LinkScraper.process_links-47"><span class="linenos">47</span></a>        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format_relative_links</span><span class="p">(</span><span class="n">links</span><span class="p">)))</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Formats relative links, removes duplicates, and sorts in alphabetical order.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.find_all" class="classattr">
+                                        <input id="LinkScraper.find_all-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">find_all</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">tag_name</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">attribute_name</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="LinkScraper.find_all-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.find_all"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.find_all-49"><a href="#LinkScraper.find_all-49"><span class="linenos">49</span></a>    <span class="k">def</span> <span class="nf">find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attribute_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper.find_all-50"><a href="#LinkScraper.find_all-50"><span class="linenos">50</span></a>        <span class="sd">&quot;&quot;&quot;Finds all results according to tag_name and attribute_name.\n</span>
+</span><span id="LinkScraper.find_all-51"><a href="#LinkScraper.find_all-51"><span class="linenos">51</span></a><span class="sd">        Filters out fragments.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.find_all-52"><a href="#LinkScraper.find_all-52"><span class="linenos">52</span></a>        <span class="k">return</span> <span class="p">[</span>
+</span><span id="LinkScraper.find_all-53"><a href="#LinkScraper.find_all-53"><span class="linenos">53</span></a>            <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">)</span>
+</span><span id="LinkScraper.find_all-54"><a href="#LinkScraper.find_all-54"><span class="linenos">54</span></a>            <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">soup</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="LinkScraper.find_all-55"><a href="#LinkScraper.find_all-55"><span class="linenos">55</span></a>            <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="LinkScraper.find_all-56"><a href="#LinkScraper.find_all-56"><span class="linenos">56</span></a>            <span class="ow">and</span> <span class="s2">&quot;#&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">)</span>
+</span><span id="LinkScraper.find_all-57"><a href="#LinkScraper.find_all-57"><span class="linenos">57</span></a>        <span class="p">]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Finds all results according to tag_name and attribute_name.</p>
+
+<p>Filters out fragments.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.filter_same_site" class="classattr">
+                                        <input id="LinkScraper.filter_same_site-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">filter_same_site</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="LinkScraper.filter_same_site-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.filter_same_site"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.filter_same_site-59"><a href="#LinkScraper.filter_same_site-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">filter_same_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper.filter_same_site-60"><a href="#LinkScraper.filter_same_site-60"><span class="linenos">60</span></a>        <span class="sd">&quot;&quot;&quot;Filters out links that don&#39;t match self.parsed_url.netloc&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.filter_same_site-61"><a href="#LinkScraper.filter_same_site-61"><span class="linenos">61</span></a>        <span class="k">return</span> <span class="p">[</span>
+</span><span id="LinkScraper.filter_same_site-62"><a href="#LinkScraper.filter_same_site-62"><span class="linenos">62</span></a>            <span class="n">link</span>
+</span><span id="LinkScraper.filter_same_site-63"><a href="#LinkScraper.filter_same_site-63"><span class="linenos">63</span></a>            <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span>
+</span><span id="LinkScraper.filter_same_site-64"><a href="#LinkScraper.filter_same_site-64"><span class="linenos">64</span></a>            <span class="k">if</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">link</span><span class="p">)</span><span class="o">.</span><span class="n">netloc</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;www.&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.filter_same_site-65"><a href="#LinkScraper.filter_same_site-65"><span class="linenos">65</span></a>            <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">netloc</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;www.&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.filter_same_site-66"><a href="#LinkScraper.filter_same_site-66"><span class="linenos">66</span></a>        <span class="p">]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Filters out links that don't match self.parsed_url.netloc</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.scrape_page_links" class="classattr">
+                                        <input id="LinkScraper.scrape_page_links-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">scrape_page_links</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="LinkScraper.scrape_page_links-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.scrape_page_links"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.scrape_page_links-68"><a href="#LinkScraper.scrape_page_links-68"><span class="linenos">68</span></a>    <span class="k">def</span> <span class="nf">scrape_page_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper.scrape_page_links-69"><a href="#LinkScraper.scrape_page_links-69"><span class="linenos">69</span></a>        <span class="sd">&quot;&quot;&quot;Scrape links according to tags and attributes.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.scrape_page_links-70"><a href="#LinkScraper.scrape_page_links-70"><span class="linenos">70</span></a>        <span class="n">links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper.scrape_page_links-71"><a href="#LinkScraper.scrape_page_links-71"><span class="linenos">71</span></a>        <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="p">[</span>
+</span><span id="LinkScraper.scrape_page_links-72"><a href="#LinkScraper.scrape_page_links-72"><span class="linenos">72</span></a>            <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper.scrape_page_links-73"><a href="#LinkScraper.scrape_page_links-73"><span class="linenos">73</span></a>            <span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper.scrape_page_links-74"><a href="#LinkScraper.scrape_page_links-74"><span class="linenos">74</span></a>            <span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper.scrape_page_links-75"><a href="#LinkScraper.scrape_page_links-75"><span class="linenos">75</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper.scrape_page_links-76"><a href="#LinkScraper.scrape_page_links-76"><span class="linenos">76</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;data-src&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper.scrape_page_links-77"><a href="#LinkScraper.scrape_page_links-77"><span class="linenos">77</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;data-url&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper.scrape_page_links-78"><a href="#LinkScraper.scrape_page_links-78"><span class="linenos">78</span></a>            <span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">),</span>
+</span><span id="LinkScraper.scrape_page_links-79"><a href="#LinkScraper.scrape_page_links-79"><span class="linenos">79</span></a>        <span class="p">]:</span>
+</span><span id="LinkScraper.scrape_page_links-80"><a href="#LinkScraper.scrape_page_links-80"><span class="linenos">80</span></a>            <span class="n">links</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">attribute</span><span class="p">))</span>
+</span><span id="LinkScraper.scrape_page_links-81"><a href="#LinkScraper.scrape_page_links-81"><span class="linenos">81</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_links</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Scrape links according to tags and attributes.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.scrape_img_links" class="classattr">
+                                        <input id="LinkScraper.scrape_img_links-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">scrape_img_links</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="LinkScraper.scrape_img_links-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.scrape_img_links"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.scrape_img_links-83"><a href="#LinkScraper.scrape_img_links-83"><span class="linenos">83</span></a>    <span class="k">def</span> <span class="nf">scrape_img_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper.scrape_img_links-84"><a href="#LinkScraper.scrape_img_links-84"><span class="linenos">84</span></a>        <span class="sd">&quot;&quot;&quot;Scrape links from src attribute of &lt;img&gt; tags.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.scrape_img_links-85"><a href="#LinkScraper.scrape_img_links-85"><span class="linenos">85</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_links</span><span class="p">(</span>
+</span><span id="LinkScraper.scrape_img_links-86"><a href="#LinkScraper.scrape_img_links-86"><span class="linenos">86</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="s2">&quot;data-src&quot;</span><span class="p">)</span>
+</span><span id="LinkScraper.scrape_img_links-87"><a href="#LinkScraper.scrape_img_links-87"><span class="linenos">87</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Scrape links from src attribute of <img> tags.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.scrape_script_links" class="classattr">
+                                        <input id="LinkScraper.scrape_script_links-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">scrape_script_links</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="LinkScraper.scrape_script_links-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.scrape_script_links"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.scrape_script_links-89"><a href="#LinkScraper.scrape_script_links-89"><span class="linenos">89</span></a>    <span class="k">def</span> <span class="nf">scrape_script_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper.scrape_script_links-90"><a href="#LinkScraper.scrape_script_links-90"><span class="linenos">90</span></a>        <span class="sd">&quot;&quot;&quot;Scrape script links from src attribute of &lt;script&gt; tags.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.scrape_script_links-91"><a href="#LinkScraper.scrape_script_links-91"><span class="linenos">91</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_links</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">,</span> <span class="s2">&quot;src&quot;</span><span class="p">))</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Scrape script links from src attribute of <script> tags.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.scrape_page" class="classattr">
+                                        <input id="LinkScraper.scrape_page-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">scrape_page</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="LinkScraper.scrape_page-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.scrape_page"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.scrape_page-93"><a href="#LinkScraper.scrape_page-93"><span class="linenos"> 93</span></a>    <span class="k">def</span> <span class="nf">scrape_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper.scrape_page-94"><a href="#LinkScraper.scrape_page-94"><span class="linenos"> 94</span></a>        <span class="sd">&quot;&quot;&quot;Scrape all link types.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.scrape_page-95"><a href="#LinkScraper.scrape_page-95"><span class="linenos"> 95</span></a>        <span class="k">for</span> <span class="n">scrape</span> <span class="ow">in</span> <span class="p">[</span>
+</span><span id="LinkScraper.scrape_page-96"><a href="#LinkScraper.scrape_page-96"><span class="linenos"> 96</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">scrape_page_links</span><span class="p">,</span>
+</span><span id="LinkScraper.scrape_page-97"><a href="#LinkScraper.scrape_page-97"><span class="linenos"> 97</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">scrape_img_links</span><span class="p">,</span>
+</span><span id="LinkScraper.scrape_page-98"><a href="#LinkScraper.scrape_page-98"><span class="linenos"> 98</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">scrape_script_links</span><span class="p">,</span>
+</span><span id="LinkScraper.scrape_page-99"><a href="#LinkScraper.scrape_page-99"><span class="linenos"> 99</span></a>        <span class="p">]:</span>
+</span><span id="LinkScraper.scrape_page-100"><a href="#LinkScraper.scrape_page-100"><span class="linenos">100</span></a>            <span class="n">scrape</span><span class="p">()</span>
+</span><span id="LinkScraper.scrape_page-101"><a href="#LinkScraper.scrape_page-101"><span class="linenos">101</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">merge_image_links_from_non_img_tags</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Scrape all link types.</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.merge_image_links_from_non_img_tags" class="classattr">
+                                        <input id="LinkScraper.merge_image_links_from_non_img_tags-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">merge_image_links_from_non_img_tags</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="LinkScraper.merge_image_links_from_non_img_tags-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.merge_image_links_from_non_img_tags"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.merge_image_links_from_non_img_tags-103"><a href="#LinkScraper.merge_image_links_from_non_img_tags-103"><span class="linenos">103</span></a>    <span class="k">def</span> <span class="nf">merge_image_links_from_non_img_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-104"><a href="#LinkScraper.merge_image_links_from_non_img_tags-104"><span class="linenos">104</span></a>        <span class="sd">&quot;&quot;&quot;Finds links in self.script_links and self.page_links</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-105"><a href="#LinkScraper.merge_image_links_from_non_img_tags-105"><span class="linenos">105</span></a><span class="sd">        that have one of these image file extensions and adds them</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-106"><a href="#LinkScraper.merge_image_links_from_non_img_tags-106"><span class="linenos">106</span></a><span class="sd">        to self.img_links&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-107"><a href="#LinkScraper.merge_image_links_from_non_img_tags-107"><span class="linenos">107</span></a>        <span class="n">formats</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-108"><a href="#LinkScraper.merge_image_links_from_non_img_tags-108"><span class="linenos">108</span></a>            <span class="s2">&quot;.jpg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-109"><a href="#LinkScraper.merge_image_links_from_non_img_tags-109"><span class="linenos">109</span></a>            <span class="s2">&quot;.jpeg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-110"><a href="#LinkScraper.merge_image_links_from_non_img_tags-110"><span class="linenos">110</span></a>            <span class="s2">&quot;.png&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-111"><a href="#LinkScraper.merge_image_links_from_non_img_tags-111"><span class="linenos">111</span></a>            <span class="s2">&quot;.svg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-112"><a href="#LinkScraper.merge_image_links_from_non_img_tags-112"><span class="linenos">112</span></a>            <span class="s2">&quot;.bmp&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-113"><a href="#LinkScraper.merge_image_links_from_non_img_tags-113"><span class="linenos">113</span></a>            <span class="s2">&quot;.tiff&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-114"><a href="#LinkScraper.merge_image_links_from_non_img_tags-114"><span class="linenos">114</span></a>            <span class="s2">&quot;.pdf&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-115"><a href="#LinkScraper.merge_image_links_from_non_img_tags-115"><span class="linenos">115</span></a>            <span class="s2">&quot;.eps&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-116"><a href="#LinkScraper.merge_image_links_from_non_img_tags-116"><span class="linenos">116</span></a>            <span class="s2">&quot;.gif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-117"><a href="#LinkScraper.merge_image_links_from_non_img_tags-117"><span class="linenos">117</span></a>            <span class="s2">&quot;.jfif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-118"><a href="#LinkScraper.merge_image_links_from_non_img_tags-118"><span class="linenos">118</span></a>            <span class="s2">&quot;.webp&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-119"><a href="#LinkScraper.merge_image_links_from_non_img_tags-119"><span class="linenos">119</span></a>            <span class="s2">&quot;.heif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-120"><a href="#LinkScraper.merge_image_links_from_non_img_tags-120"><span class="linenos">120</span></a>            <span class="s2">&quot;.avif&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-121"><a href="#LinkScraper.merge_image_links_from_non_img_tags-121"><span class="linenos">121</span></a>            <span class="s2">&quot;.bat&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-122"><a href="#LinkScraper.merge_image_links_from_non_img_tags-122"><span class="linenos">122</span></a>            <span class="s2">&quot;.bpg&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-123"><a href="#LinkScraper.merge_image_links_from_non_img_tags-123"><span class="linenos">123</span></a>        <span class="p">]</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-124"><a href="#LinkScraper.merge_image_links_from_non_img_tags-124"><span class="linenos">124</span></a>        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span><span class="p">:</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-125"><a href="#LinkScraper.merge_image_links_from_non_img_tags-125"><span class="linenos">125</span></a>            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">ext</span> <span class="ow">in</span> <span class="n">link</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">formats</span><span class="p">):</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-126"><a href="#LinkScraper.merge_image_links_from_non_img_tags-126"><span class="linenos">126</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span><span id="LinkScraper.merge_image_links_from_non_img_tags-127"><a href="#LinkScraper.merge_image_links_from_non_img_tags-127"><span class="linenos">127</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_links</span><span class="p">))</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Finds links in self.script_links and self.page_links
+that have one of these image file extensions and adds them
+to self.img_links</p>
+</div>
+
+
+                            </div>
+                            <div id="LinkScraper.get_links" class="classattr">
+                                        <input id="LinkScraper.get_links-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_links</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">link_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span>,</span><span class="param">	<span class="n">same_site_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">excluded_links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="LinkScraper.get_links-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#LinkScraper.get_links"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LinkScraper.get_links-129"><a href="#LinkScraper.get_links-129"><span class="linenos">129</span></a>    <span class="k">def</span> <span class="nf">get_links</span><span class="p">(</span>
+</span><span id="LinkScraper.get_links-130"><a href="#LinkScraper.get_links-130"><span class="linenos">130</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="LinkScraper.get_links-131"><a href="#LinkScraper.get_links-131"><span class="linenos">131</span></a>        <span class="n">link_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+</span><span id="LinkScraper.get_links-132"><a href="#LinkScraper.get_links-132"><span class="linenos">132</span></a>        <span class="n">same_site_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="LinkScraper.get_links-133"><a href="#LinkScraper.get_links-133"><span class="linenos">133</span></a>        <span class="n">excluded_links</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="LinkScraper.get_links-134"><a href="#LinkScraper.get_links-134"><span class="linenos">134</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="LinkScraper.get_links-135"><a href="#LinkScraper.get_links-135"><span class="linenos">135</span></a>        <span class="sd">&quot;&quot;&quot;Returns a list of urls found on the page.</span>
+</span><span id="LinkScraper.get_links-136"><a href="#LinkScraper.get_links-136"><span class="linenos">136</span></a>
+</span><span id="LinkScraper.get_links-137"><a href="#LinkScraper.get_links-137"><span class="linenos">137</span></a><span class="sd">        :param link_type: Can be &#39;all&#39;, &#39;page&#39;, &#39;img&#39;, or &#39;script&#39;.</span>
+</span><span id="LinkScraper.get_links-138"><a href="#LinkScraper.get_links-138"><span class="linenos">138</span></a>
+</span><span id="LinkScraper.get_links-139"><a href="#LinkScraper.get_links-139"><span class="linenos">139</span></a><span class="sd">        :param same_site_only: Excludes external urls if True.</span>
+</span><span id="LinkScraper.get_links-140"><a href="#LinkScraper.get_links-140"><span class="linenos">140</span></a>
+</span><span id="LinkScraper.get_links-141"><a href="#LinkScraper.get_links-141"><span class="linenos">141</span></a><span class="sd">        :param excluded_links: A list of urls to filter out of the results.</span>
+</span><span id="LinkScraper.get_links-142"><a href="#LinkScraper.get_links-142"><span class="linenos">142</span></a><span class="sd">        Useful for excluding duplicates when recursively scraping a website.</span>
+</span><span id="LinkScraper.get_links-143"><a href="#LinkScraper.get_links-143"><span class="linenos">143</span></a><span class="sd">        Can also be used with link_type=&#39;all&#39; to get two link types in one call:</span>
+</span><span id="LinkScraper.get_links-144"><a href="#LinkScraper.get_links-144"><span class="linenos">144</span></a>
+</span><span id="LinkScraper.get_links-145"><a href="#LinkScraper.get_links-145"><span class="linenos">145</span></a><span class="sd">        e.g. links = scraper.get_links(link_type = &#39;all&#39;, excluded_links = scraper.script_links)</span>
+</span><span id="LinkScraper.get_links-146"><a href="#LinkScraper.get_links-146"><span class="linenos">146</span></a><span class="sd">        will return page links and img links.&quot;&quot;&quot;</span>
+</span><span id="LinkScraper.get_links-147"><a href="#LinkScraper.get_links-147"><span class="linenos">147</span></a>        <span class="k">match</span> <span class="n">link_type</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-148"><a href="#LinkScraper.get_links-148"><span class="linenos">148</span></a>            <span class="k">case</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-149"><a href="#LinkScraper.get_links-149"><span class="linenos">149</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span>
+</span><span id="LinkScraper.get_links-150"><a href="#LinkScraper.get_links-150"><span class="linenos">150</span></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span>
+</span><span id="LinkScraper.get_links-151"><a href="#LinkScraper.get_links-151"><span class="linenos">151</span></a>                <span class="p">)</span>
+</span><span id="LinkScraper.get_links-152"><a href="#LinkScraper.get_links-152"><span class="linenos">152</span></a>            <span class="k">case</span> <span class="s2">&quot;page&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-153"><a href="#LinkScraper.get_links-153"><span class="linenos">153</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_links</span>
+</span><span id="LinkScraper.get_links-154"><a href="#LinkScraper.get_links-154"><span class="linenos">154</span></a>            <span class="k">case</span> <span class="s2">&quot;img&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-155"><a href="#LinkScraper.get_links-155"><span class="linenos">155</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_links</span>
+</span><span id="LinkScraper.get_links-156"><a href="#LinkScraper.get_links-156"><span class="linenos">156</span></a>            <span class="k">case</span> <span class="s2">&quot;script&quot;</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-157"><a href="#LinkScraper.get_links-157"><span class="linenos">157</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">script_links</span>
+</span><span id="LinkScraper.get_links-158"><a href="#LinkScraper.get_links-158"><span class="linenos">158</span></a>            <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-159"><a href="#LinkScraper.get_links-159"><span class="linenos">159</span></a>                <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LinkScraper.get_links-160"><a href="#LinkScraper.get_links-160"><span class="linenos">160</span></a>        <span class="k">if</span> <span class="n">same_site_only</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-161"><a href="#LinkScraper.get_links-161"><span class="linenos">161</span></a>            <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_same_site</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</span><span id="LinkScraper.get_links-162"><a href="#LinkScraper.get_links-162"><span class="linenos">162</span></a>        <span class="k">if</span> <span class="n">excluded_links</span><span class="p">:</span>
+</span><span id="LinkScraper.get_links-163"><a href="#LinkScraper.get_links-163"><span class="linenos">163</span></a>            <span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">link</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span> <span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded_links</span><span class="p">]</span>
+</span><span id="LinkScraper.get_links-164"><a href="#LinkScraper.get_links-164"><span class="linenos">164</span></a>        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Returns a list of urls found on the page.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><p><strong>link_type</strong>:  Can be 'all', 'page', 'img', or 'script'.</p></li>
+<li><p><strong>same_site_only</strong>:  Excludes external urls if True.</p></li>
+<li><p><strong>excluded_links</strong>:  A list of urls to filter out of the results.
+Useful for excluding duplicates when recursively scraping a website.
+Can also be used with link_type='all' to get two link types in one call:</p></li>
+</ul>
+
+<p>e.g. links = scraper.get_links(link_type = 'all', excluded_links = scraper.script_links)
+will return page links and img links.</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="scrape_phone_numbers">
+                            <input id="scrape_phone_numbers-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">scrape_phone_numbers</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">text</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="scrape_phone_numbers-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#scrape_phone_numbers"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="scrape_phone_numbers-119"><a href="#scrape_phone_numbers-119"><span class="linenos">119</span></a><span class="k">def</span> <span class="nf">scrape_phone_numbers</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="scrape_phone_numbers-120"><a href="#scrape_phone_numbers-120"><span class="linenos">120</span></a>    <span class="sd">&quot;&quot;&quot;Scrape phone numbers from text using regex.&quot;&quot;&quot;</span>
+</span><span id="scrape_phone_numbers-121"><a href="#scrape_phone_numbers-121"><span class="linenos">121</span></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+1&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+</span><span id="scrape_phone_numbers-122"><a href="#scrape_phone_numbers-122"><span class="linenos">122</span></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\b\(?[2-9]</span><span class="si">{1}</span><span class="s2">[0-9]</span><span class="si">{2}</span><span class="s2">\)?[ .-]</span><span class="si">{1}</span><span class="s2">[2-9]</span><span class="si">{1}</span><span class="s2">[0-9]</span><span class="si">{2}</span><span class="s2">[ .-]</span><span class="si">{1}</span><span class="s2">[0-9]</span><span class="si">{4}</span><span class="s2">\b&quot;</span>
+</span><span id="scrape_phone_numbers-123"><a href="#scrape_phone_numbers-123"><span class="linenos">123</span></a>    <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^0-9]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)]</span>
+</span><span id="scrape_phone_numbers-124"><a href="#scrape_phone_numbers-124"><span class="linenos">124</span></a>    <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="scrape_phone_numbers-125"><a href="#scrape_phone_numbers-125"><span class="linenos">125</span></a>        <span class="n">number</span>
+</span><span id="scrape_phone_numbers-126"><a href="#scrape_phone_numbers-126"><span class="linenos">126</span></a>        <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span>
+</span><span id="scrape_phone_numbers-127"><a href="#scrape_phone_numbers-127"><span class="linenos">127</span></a>        <span class="k">if</span> <span class="n">phonenumbers</span><span class="o">.</span><span class="n">is_valid_number</span><span class="p">(</span><span class="n">phonenumbers</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;+1&quot;</span> <span class="o">+</span> <span class="n">number</span><span class="p">))</span>
+</span><span id="scrape_phone_numbers-128"><a href="#scrape_phone_numbers-128"><span class="linenos">128</span></a>    <span class="p">]</span>
+</span><span id="scrape_phone_numbers-129"><a href="#scrape_phone_numbers-129"><span class="linenos">129</span></a>    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Scrape phone numbers from text using regex.</p>
+</div>
+
+
+                </section>
     </main>
-<script>
-    function escapeHTML(html) {
-        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
-    }
-
-    const originalContent = document.querySelector("main.pdoc");
-    let currentContent = originalContent;
-
-    function setContent(innerHTML) {
-        let elem;
-        if (innerHTML) {
-            elem = document.createElement("main");
-            elem.classList.add("pdoc");
-            elem.innerHTML = innerHTML;
-        } else {
-            elem = originalContent;
-        }
-        if (currentContent !== elem) {
-            currentContent.replaceWith(elem);
-            currentContent = elem;
-        }
-    }
-
-    function getSearchTerm() {
-        return (new URL(window.location)).searchParams.get("search");
-    }
-
-    const searchBox = document.querySelector(".pdoc input[type=search]");
-    searchBox.addEventListener("input", function () {
-        let url = new URL(window.location);
-        if (searchBox.value.trim()) {
-            url.hash = "";
-            url.searchParams.set("search", searchBox.value);
-        } else {
-            url.searchParams.delete("search");
-        }
-        history.replaceState("", "", url.toString());
-        onInput();
-    });
-    window.addEventListener("popstate", onInput);
-
-
-    let search, searchErr;
-
-    async function initialize() {
-        try {
-            search = await new Promise((resolve, reject) => {
-                const script = document.createElement("script");
-                script.type = "text/javascript";
-                script.async = true;
-                script.onload = () => resolve(window.pdocSearch);
-                script.onerror = (e) => reject(e);
-                script.src = "search.js";
-                document.getElementsByTagName("head")[0].appendChild(script);
-            });
-        } catch (e) {
-            console.error("Cannot fetch pdoc search index");
-            searchErr = "Cannot fetch search index.";
-        }
-        onInput();
-
-        document.querySelector("nav.pdoc").addEventListener("click", e => {
-            if (e.target.hash) {
-                searchBox.value = "";
-                searchBox.dispatchEvent(new Event("input"));
-            }
-        });
-    }
-
-    function onInput() {
-        setContent((() => {
-            const term = getSearchTerm();
-            if (!term) {
-                return null
-            }
-            if (searchErr) {
-                return `<h3>Error: ${searchErr}</h3>`
-            }
-            if (!search) {
-                return "<h3>Searching...</h3>"
-            }
-
-            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
-
-            const results = search(term);
-
-            let html;
-            if (results.length === 0) {
-                html = `No search results for '${escapeHTML(term)}'.`
-            } else {
-                html = `<h4>${results.length} search result${results.length > 1 ? "s" : ""} for '${escapeHTML(term)}'.</h4>`;
-            }
-            for (let result of results.slice(0, 10)) {
-                let doc = result.doc;
-                let url = `${doc.modulename.replaceAll(".", "/")}.html`;
-                if (doc.qualname) {
-                    url += `#${doc.qualname}`;
-                }
-
-                let heading;
-                switch (result.doc.kind) {
-                    case "function":
-                        if (doc.fullname.endsWith(".__init__")) {
-                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
-                        } else {
-                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
-                        }
-                        break;
-                    case "class":
-                        heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
-                        if (doc.bases)
-                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
-                        heading += `:`;
-                        break;
-                    case "variable":
-                        heading = `<span class="name">${doc.fullname}</span>`;
-                        if (doc.annotation)
-                            heading += `<span class="annotation">${doc.annotation}</span>`;
-                        if (doc.default_value)
-                            heading += `<span class="default_value">${doc.default_value}</span>`;
-                        break;
-                    default:
-                        heading = `<span class="name">${doc.fullname}</span>`;
-                        break;
-                }
-                html += `
-                        <section class="search-result">
-                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
-                        <div class="docstring">${doc.doc}</div>
-                        </section>
-                    `;
-
-            }
-            return html;
-        })());
-    }
-
-    if (getSearchTerm()) {
-        initialize();
-        searchBox.value = getSearchTerm();
-        onInput();
-    } else {
-        searchBox.addEventListener("focus", initialize, {once: true});
-    }
-
-    searchBox.addEventListener("keydown", e => {
-        if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
-            let focused = currentContent.querySelector(".search-result.focused");
-            if (!focused) {
-                currentContent.querySelector(".search-result").classList.add("focused");
-            } else if (
-                e.key === "ArrowDown"
-                && focused.nextElementSibling
-                && focused.nextElementSibling.classList.contains("search-result")
-            ) {
-                focused.classList.remove("focused");
-                focused.nextElementSibling.classList.add("focused");
-                focused.nextElementSibling.scrollIntoView({
-                    behavior: "smooth",
-                    block: "nearest",
-                    inline: "nearest"
-                });
-            } else if (
-                e.key === "ArrowUp"
-                && focused.previousElementSibling
-                && focused.previousElementSibling.classList.contains("search-result")
-            ) {
-                focused.classList.remove("focused");
-                focused.previousElementSibling.classList.add("focused");
-                focused.previousElementSibling.scrollIntoView({
-                    behavior: "smooth",
-                    block: "nearest",
-                    inline: "nearest"
-                });
-            } else if (
-                e.key === "Enter"
-            ) {
-                focused.querySelector("a").click();
-            }
-        }
-    });
-</script></body>
+</body>
 </html>
