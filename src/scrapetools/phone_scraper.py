@@ -28,7 +28,7 @@ def find_by_separator(text: str, separator: str) -> list[str]:
 
     xxx{separator}xxx{separator}xxxx"""
     count = text.count(separator)
-    numbers = []
+    numbers: list[str] = []
     if count > 0:
         last_stopdex = 0
         for _ in range(count):
@@ -86,7 +86,7 @@ def find_by_href(text: str) -> list[str]:
     count = text.count(indicator)
     prefixes = ["tel:", "callto:"]
     index = 0
-    numbers = []
+    numbers: list[str] = []
     for _ in range(count):
         index = text.find(indicator, index + 1)
         number = text[index + len(indicator) : text.find('"', index + len(indicator))]
@@ -101,7 +101,7 @@ def find_by_href(text: str) -> list[str]:
 
 def scrape_phone_numbers_noregex(text: str) -> list[str]:
     """Scrape for u.s. phone numbers."""
-    numbers = []
+    numbers: list[str] = []
     text = text.replace("+1", "")
     for separator in "-.":
         numbers.extend(find_by_separator(text, separator))
