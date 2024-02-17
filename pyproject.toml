@@ -1,44 +1,32 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
 name = "scrapetools"
-authors = [{name="Matt Manes"}]
 description = "A collection of tools to aid in web scraping."
-version = "1.1.5"
-requires-python = ">=3.10"
-dependencies = ["bs4", "phonenumbers"]
+version = "1.1.6"
+dependencies = ["bs4", "phonenumbers", "beautifulsoup4"]
 readme = "README.md"
-keywords = [
-    "webscraping",
-    "web",
-    "html",
-    "email",
-    "scrape",
-    "scraping"
-]
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
+keywords = ["webscraping", "web", "html", "email", "scrape", "scraping"]
+classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent"]
+requires-python = ">=3.10"
+
+[[project.authors]]
+name = "Matt Manes"
+email = ""
 
 [project.urls]
-"Homepage" = "https://github.com/matt-manes/scrapetools"
-"Documentation" = "https://github.com/matt-manes/scrapetools/tree/main/docs"
+Homepage = "https://github.com/matt-manes/scrapetools"
+Documentation = "https://github.com/matt-manes/scrapetools/tree/main/docs"
 "Source code" = "https://github.com/matt-manes/scrapetools/tree/main/src/scrapetools"
 
+[project.scripts]
+
+[tool]
 [tool.pytest.ini_options]
-addopts = [
-    "--import-mode=importlib",
-]
+addopts = ["--import-mode=importlib"]
 pythonpath = "src"
 
 [tool.hatch.build.targets.sdist]
-exclude = [
-    ".coverage",
-    ".pytest_cache",
-    ".vscode",
-    "tests", "docs", "htmlcov", "*.md"
-]
+exclude = [".coverage", ".pytest_cache", ".vscode", "tests", "docs", "htmlcov", "*.md"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

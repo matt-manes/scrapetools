@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 
-def scrape_inputs(source: str) -> tuple[list[Tag]]:
+def scrape_inputs(
+    source: str,
+) -> tuple[list[Tag], list[Tag], list[Tag], list[Tag], list[Tag]]:
     """Searches html for various user input elements.
 
     Returns a tuple where each element is a list of BeautifulSoup Tag elements.

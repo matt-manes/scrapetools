@@ -1,7 +1,6 @@
 import re
 
 import phonenumbers
-from bs4 import BeautifulSoup
 
 
 def get_num_consecutive_numbers(text: str, reverse: bool = False) -> int:

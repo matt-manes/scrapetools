@@ -111,7 +111,7 @@ def find_last_valid_character_offset(text: str) -> int:
 def strip_unicode(emails: list[str]) -> list[str]:
     """Removes unicode text that often gets picked
     up at the front of email addresses and returns the list."""
-    stripped_emails = []
+    stripped_emails: list[str] = []
     for email in emails:
         for text in ["u003e", "u00a0"]:
             if text in email:
@@ -129,7 +129,7 @@ def scrape_emails_noregex(text: str) -> list[str]:
     for ch in ["\n", "\t", "\r"]:
         text = text.replace(ch, " ")
     at_count = text.count("@")
-    emails = []
+    emails: list[str] = []
     if at_count > 0:
         last_stopdex = 0
         for i in range(at_count):
@@ -159,7 +159,7 @@ def scrape_emails_noregex(text: str) -> list[str]:
 
 
 def filter_out_files(
-    emails: list[str], additional_extensions: list[str] = None
+    emails: list[str], additional_extensions: list[str] | None = None
 ) -> list[str]:
     """Filter out emails with file extensions
     instead of domains.
@@ -203,7 +203,7 @@ def replace_unicodehex(text: str) -> str:
     return re.sub(r"u00[a-zA-Z0-9]{2}", " ", text)
 
 
-def scrape_emails(text: str, extra_extensions: list[str] = None) -> list[str]:
+def scrape_emails(text: str, extra_extensions: list[str] | None = None) -> list[str]:
     """Extract emails from text using regex.
 
     :param text: The text to scrape.

@@ -1,3 +1,4 @@
+from typing import Any
 from urllib.parse import urlparse, urlunparse
 
 from bs4 import BeautifulSoup
@@ -18,7 +19,7 @@ class LinkScraper:
 
         Full urls are returned unedited other than stripping any
         leading or trailing forward slashes."""
-        formatted_links = []
+        formatted_links: list[str] = []
         for link in links:
             link = (
                 link.strip(" \n\t\r")
@@ -36,7 +37,7 @@ class LinkScraper:
                 formatted_links.append(urlunparse(parsed_url).strip("/"))
         return formatted_links
 
-    def remove_duplicates(self, obj: list) -> list:
+    def remove_duplicates(self, obj: list[Any]) -> list[Any]:
         """Removes duplicate members."""
         return list(set(obj))
 
@@ -65,7 +66,7 @@ class LinkScraper:
 
     def scrape_page_links(self):
         """Scrape links according to tags and attributes."""
-        links = []
+        links: list[str] = []
         for tag, attribute in [
             ("a", "href"),
             ("link", "href"),
@@ -128,7 +129,7 @@ class LinkScraper:
         self,
         link_type: str = "all",
         same_site_only: bool = False,
-        excluded_links: list[str] = None,
+        excluded_links: list[str] | None = None,
     ) -> list[str]:
         """Returns a list of urls found on the page.
 
@@ -153,6 +154,8 @@ class LinkScraper:
                 links = self.img_links
             case "script":
                 links = self.script_links
+            case _:
+                links = []
         if same_site_only:
             links = self.filter_same_site(links)
         if excluded_links:
