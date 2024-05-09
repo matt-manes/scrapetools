@@ -1,7 +1,7 @@
+import html
+import re
 from typing import Any
 from urllib.parse import urlparse, urlunparse
-import re
-import html
 
 from bs4 import BeautifulSoup
 
