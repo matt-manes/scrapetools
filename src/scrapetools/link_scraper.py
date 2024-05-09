@@ -1,12 +1,14 @@
 from typing import Any
 from urllib.parse import urlparse, urlunparse
 import re
+import html
 
 from bs4 import BeautifulSoup
 
 
 class LinkScraper:
     def __init__(self, html_src: str, page_url: str):
+        self.source = html_src
         self.soup = BeautifulSoup(html_src, features="html.parser")
         self.parsed_url = urlparse(page_url)
         self.page_links = []
@@ -78,6 +80,7 @@ class LinkScraper:
             ("div", "href"),
         ]:
             links.extend(self.find_all(tag, attribute))
+        links.extend(self.scrape_regex())
         self.page_links = self.process_links(links)
 
     def scrape_img_links(self):
@@ -124,6 +127,12 @@ class LinkScraper:
             if any(ext in link for ext in formats):
                 self.img_links.append(link)
         self.img_links = sorted(self.remove_duplicates(self.img_links))
+
+    def scrape_regex(self) -> list[str]:
+        """Use regex to scrape page source for `http` and `https` urls."""
+        pattern = r"https?://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+        matches = re.findall(pattern, html.unescape(self.source))
+        return matches
 
     def get_links(
         self,
