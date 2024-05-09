@@ -1,5 +1,6 @@
 from typing import Any
 from urllib.parse import urlparse, urlunparse
+import re
 
 from bs4 import BeautifulSoup
 
@@ -110,7 +111,6 @@ class LinkScraper:
             ".svg",
             ".bmp",
             ".tiff",
-            ".pdf",
             ".eps",
             ".gif",
             ".jfif",
