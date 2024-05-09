@@ -1,12 +1,19 @@
 # Scrapetools
-A collection of tools to aid in web scraping.<br>
+
+A collection of tools to aid in web scraping.  
+
 Install using:
-<pre>pip install scrapetools</pre>
+
+```console
+pip install scrapetools
+```
+
 Scrapetools contains three functions (scrape_emails, scrape_phone_numbers, scrape_inputs)
-and one class (LinkScraper).
-<br>
+and one class (LinkScraper).  
+
 ## Basic usage
-<pre>
+
+```python
 import scrapetools
 import requests
 
@@ -26,4 +33,4 @@ external_image_links = scraper.get_links(link_type='img', excluded_links=same_si
 
 # scrape_inputs() returns a tuple of BeautifulSoup Tag elements for various user input elements
 forms, inputs, buttons, selects, text_areas = scrapetools.scrape_inputs(source)
-</pre>
+```
