@@ -2,7 +2,7 @@
 name = "scrapetools"
 description = "A collection of tools to aid in web scraping."
 version = "1.1.8"
-dependencies = ["bs4", "phonenumbers", "beautifulsoup4"]
+dependencies = ["phonenumbers", "beautifulsoup4"]
 readme = "README.md"
 keywords = ["webscraping", "web", "html", "email", "scrape", "scraping"]
 classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent"]
@@ -10,7 +10,7 @@ requires-python = ">=3.10"
 
 [[project.authors]]
 name = "Matt Manes"
-email = ""
+email = "mattmanes@pm.me"
 
 [project.urls]
 Homepage = "https://github.com/matt-manes/scrapetools"
